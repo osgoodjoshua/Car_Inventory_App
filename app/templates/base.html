@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-warning navbar-warning py-3 fixed-top">
         <div class="container">
-            <a href="#" class="navbar-brand text-dark">Car Inventory</a>
+            <a href="{{ url_for('site.home') }}" class="navbar-brand text-dark">Car Inventory</a>
             <button 
                 class="navbar-toggler" 
                 type="button" 
@@ -22,20 +22,23 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Home</a>
+                        <a href="{{ url_for('site.home') }}" class="nav-link text-dark">Home</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('site.profile') }}" class="nav-link text-dark">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Profile</a>
+                        <a href="{{ url_for('auth.logout') }}" class="nav-link text-dark">Logout</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Logout</a> -->
-                    <!-- </li> -->
+                    {% else %}
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Sign In</a>
+                        <a href="{{ url_for('auth.signin') }}" class="nav-link text-dark">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Sign Up</a>
+                        <a href="{{ url_for('auth.signup') }}" class="nav-link text-dark">Sign Up</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
